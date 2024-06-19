@@ -15,7 +15,7 @@
 
 #include <stdio.h>
 #include "OPC-R2.h"
-#include "OPC_node.h"
+#include "Mini_node.h"
 
 /*************  Helper Functions  *************/
 // Combine two bytes into a 16-bit unsigned int

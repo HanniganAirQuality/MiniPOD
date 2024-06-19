@@ -1,15 +1,15 @@
 /*******************************************************************************
  * @project Hannigan Lab's Next Gen. Air Quality Pods
  *
- * @file    OPC_node.h
+ * @file    Mini_node.h
  * @brief   Integrates updated OPC-R2 firmware written as OPC-R2.h & .cpp
  *
  * @author 	Percy Smith
  * @date 	  June 19, 2024
  * @log     Should use the LEDs, write all OPC histogram data, RTC Timestamp
 ******************************************************************************/
-#ifndef _OPC_NODE_H
-#define _OPC_NODE_H
+#ifndef _MINI_NODE_H
+#define _MINI_NODE_H
 
 #define SDCARD_LOG_ENABLED    1
 #define SERIAL_LOG_ENABLED    1
@@ -30,4 +30,4 @@
 // #define STATUS_ERROR          11
 // #define STATUS_HALTED         13
 
-#endif // _XPOD_NODE_H
+#endif // _MINI_NODE_H

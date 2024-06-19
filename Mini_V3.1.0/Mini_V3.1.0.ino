@@ -1,7 +1,7 @@
 /*******************************************************************************
  * @project Hannigan Lab's Next Gen. Air Quality Pods
  *
- * @file    OPC_V3.1.0.ino
+ * @file    Mini_V3.1.0.ino
  * @version Percy's 3.1.0
  * @brief   Integrates updated OPC-R2 firmware written as OPC-R2.h & .cpp
  *
@@ -11,7 +11,7 @@
 ******************************************************************************/
 
 /*************  Included Libraries  *************/
-#include "OPC_node.h"
+#include "Mini_node.h"
 #include <Wire.h>
 #include <SPI.h>
 #include <SdFat.h>

@@ -10,4 +10,4 @@ Thanks to Izzy for this suggestion! Here we will be tracking each version of the
 | **V3.2.0**        | **Fixed Files**	 | **Percy**         | **May 7, 2025**   | **File naming updated, changed clock adjust convention**	|
 
 
-**Note**: I highly recommend using V3.2.0, she will have the best longevity, TO MY KNOWLEDGE !!!! (Resolved ProblemID: "Forgor")
+**Note**: I highly recommend using V3.2.0, she will have the best longevity, TO MY KNOWLEDGE!! (resolved problemID: "Forgor")

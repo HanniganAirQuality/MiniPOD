@@ -7,6 +7,7 @@ Thanks to Izzy for this suggestion! Here we will be tracking each version of the
 | ------------- | -------------- | ------------- | -------------      | ----------------------------------------------- |
 | V3.1.0    	| Initial Upload | Percy         | June 19, 2024   | IDK just don't use this one |
 | V3.1.2        | Primary Firmware      | Percy         | June 20, 2024   |  Uses LEDs, writes all OPC data, RTC Timestamp	|
-| **V3.2.0**        | **Fixed Files**	 | **Percy**         | **May 7, 2025**   | **File naming updated, changed clock adjust convention**	|
+| **V3.2.0**        | **Fixed Files**	 | **Percy**         | **May 7, 2025**   | **File naming updated, changed clock adjust convention**	
+(Resolved ProblemID: "Forgor")|
 
-**Note**: I highly recommend using V3.2.0, she is the least deranged, and she will have the best longevity, TO MY KNOWLEDGE !!!! (Resolved ProblemID: "Forgor")
+**Note**: I highly recommend using V3.2.0, she is the least deranged, and she will have the best longevity, TO MY KNOWLEDGE !!!! 

@@ -6,5 +6,5 @@ Thanks to Izzy for this suggestion! Here we will be tracking each version of the
 | Version       | "Named" Ver.   | Pilot         | Date               | Description & Purpose                		|
 | ------------- | -------------- | ------------- | -------------      | ----------------------------------------------- |
 | V3.1.0    	| Initial Upload | Percy         |       | Moving documents to central git		     	|
-| V3.1.2        | Primary Firmware      | Percy         | June 2024   | 	|
+| V3.1.2        | Primary Firmware      | Percy         | June 20, 2024   |  Uses LEDs, writes all OPC data, RTC Timestamp	|
 | V3.2.0        | Fixed Files	 | Percy         | May 7, 2025   | Files behave less ferally				|

@@ -6,7 +6,7 @@
  * @brief   Integrates updated OPC-R2 firmware written as OPC-R2.h & .cpp
  *
  * @author 	Percy Smith
- * @date 	  June 7, 2025
+ * @date 	  May 8, 2025
  * @log     Resolves issues from 3.2.1 with file creation (out of memory)
  *          File Naming is now based on date to prevent huge files
  *          Adjust clock using the PCF8523_ClockAdjust.ino file first (then upload this)

@@ -6,7 +6,7 @@
  * @brief   Integrates updated OPC-R2 firmware written as OPC-R2.h & .cpp
  *
  * @author 	Percy Smith
- * @date 	  May 7, 2025
+ * @date 	  May 8, 2025
  * @log     UPDATE PODID in Mini_V3.2.1.ino - USE CTRL + F AND REPLACE ALL (ONLY 3 CHAR!!a)
 ******************************************************************************/
 #ifndef _MINI_NODE_H

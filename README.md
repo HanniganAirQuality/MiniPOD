@@ -13,8 +13,8 @@ Thanks to Izzy for this suggestion! Here we will be tracking each version of the
 
 ## Memory Change Notes
 ### V3.2.1
-Sketch uses 24686 bytes **(76%)** of program storage space. Maximum is 32256 bytes. 
+Sketch uses 24686 bytes **(76%)** of program storage space. Maximum is 32256 bytes. \n
 Global variables use 1648 bytes **(80%)** of dynamic memory, leaving 400 bytes for local variables. Maximum is 2048 bytes.
 ### V3.3.1
-Sketch uses 22368 bytes **(69%)** of program storage space. Maximum is 32256 bytes.
+Sketch uses 22368 bytes **(69%)** of program storage space. Maximum is 32256 bytes. \n
 Global variables use 1302 bytes **(63%)** of dynamic memory, leaving 746 bytes for local variables. Maximum is 2048 bytes.

@@ -11,7 +11,7 @@ Thanks to Izzy for this suggestion! Here we will be tracking each version of the
 | V3.2.1        | Lot of Memory  | Percy         | May 8, 2025   | Fixes 3.2.0 issue creating files (probID "forgor")	|
 | V3.3.1        | USE THIS ONE | Percy         | Dec 9, 2025   | Optimizes memory by changing .print files	|
 
-## V3.2.1 --> V3.3.1: Memory Update Summary
+## Memory Change Notes
 ### V3.2.1
 Sketch uses 24686 bytes (76%) of program storage space. Maximum is 32256 bytes. Global variables use 1648 bytes (80%) of dynamic memory, leaving 400 bytes for local variables. Maximum is 2048 bytes.
 ### V3.3.1

@@ -1,15 +1,13 @@
 /*******************************************************************************
  * @project Hannigan Lab's Next Gen. Air Quality Pods
  *
- * @file    Mini_V3.2.1.ino
- * @version Percy's 3.2.1
+ * @file    Mini_V3.3.1.ino
+ * @version Percy's 3.3.1
  * @brief   Integrates updated OPC-R2 firmware written as OPC-R2.h & .cpp
  *
  * @author 	Percy Smith
- * @date 	  May 8, 2025
- * @log     Resolves issues from 3.2.1 with file creation (out of memory)
- *          File Naming is now based on date to prevent huge files
- *          Adjust clock using the PCF8523_ClockAdjust.ino file first (then upload this)
+ * @date 	  December 9, 2025
+ * @log     Changes .print statements to use F() & decrease memory
 ******************************************************************************/
 
 /*************  Included Libraries  *************/
@@ -43,7 +41,7 @@ void setup()
 {
   #if SERIAL_LOG_ENABLED
     Serial.begin(9600);
-    Serial.println("Initialized Serial Monitor");
+    Serial.println(F("Initialized Serial Monitor"));
   #endif
 
   SPI.begin();
@@ -53,12 +51,12 @@ void setup()
     if(!opc.begin())
     {
       #if SERIAL_LOG_ENABLED
-        Serial.println("Error: Failed to initialize OPC!");
+        Serial.println(F("Error: Failed to initialize OPC!"));
       #endif
     }
     opc.on();
     digitalWrite(RED_LED, HIGH);
-    Serial.println("OPC on!");
+    Serial.println(F("OPC on!"));
     digitalWrite(OPC_CSPIN, HIGH); // just in case this closes SPI OPC line
   #endif
 
@@ -75,7 +73,7 @@ void setup()
     if (!rtc.begin())
     {
       #if SERIAL_LOG_ENABLED
-        Serial.println("Error: Failed to initialize RTC module");
+        Serial.println(F("Error: Failed to initialize RTC module"));
       #endif
     }
     else
@@ -90,7 +88,7 @@ void setup()
     while (!sd.begin(SD_CSPIN)) 
     {
       #if SERIAL_LOG_ENABLED
-        Serial.println("SD Initialization Failed");
+        Serial.println(F("SD Initialization Failed"));
         digitalWrite(GREEN_LED, LOW);
         digitalWrite(EXT_GREEN_LED, LOW);
         digitalWrite(EXT_RED_LED, HIGH);
@@ -102,7 +100,7 @@ void setup()
     Y = now.year();
     M = now.month();
     D = now.day();
-  sprintf(fileName, "%s_%04u_%02u_%02u.CSV", "M09", Y, M, D);    //char array for fileName
+  sprintf(fileName, "%s_%04u_%02u_%02u.CSV", "M11", Y, M, D);    //char array for fileName
   delay(100);   
   file.open(fileName, O_CREAT | O_APPEND | O_WRITE);  //open with create permissions
   file.close();                                       //close file, we opened so loop() is faster 
@@ -121,7 +119,7 @@ void loop()
     if(!opc.begin())  
     {
       digitalWrite(RED_LED, LOW);
-      Serial.println("No Find OPC");
+      Serial.println(F("No Find OPC"));
       opc.begin();
     }
     else
@@ -146,52 +144,94 @@ void loop()
       #endif 
       #if OPC_ENABLED  // this is all the serial printing for testing
         for(int i = 0; i < 16; i++){
-          Serial.print("Bin " + String(i) + ": " + String(opcData.bin[i]) + ",");
+          Serial.print(F("Bin "));
+          Serial.print(i);
+          Serial.print(F(": "));
+          Serial.print(opcData.bin[i]);
+          Serial.print(F(","));
           delay(10);
         }
-        Serial.print("\n  ");
+        Serial.print(F("\n"));
         for(int j = 0; j < 4; j++){
-          Serial.print("MToF " + String(j*2+1) + ": " + String(opcData.MToF[j]) + ",");
+          Serial.print(F("MToF "));
+          Serial.print(j*2+1);
+          Serial.print(F(": "));
+          Serial.print(opcData.MToF[j]);
+          Serial.print(F(","));
           delay(10);
         }
         delay(10);
-        Serial.print("\n  ");
-        Serial.print("Byte T: " + String(opcData.rawComms[41]) + String(opcData.rawComms[40]) + ",");
-        Serial.print("T: " + String(opcData.T_C) + "(" + String(opcData.signal_temp) + "),");
+          Serial.print(F("\n"));
+          Serial.print(F("Byte T: "));
+          Serial.print(opcData.rawComms[41]);
+          Serial.print(opcData.rawComms[40]);
+          Serial.print(F(","));
+          Serial.print(F("T: "));
+          Serial.print(opcData.T_C);
+          Serial.print(F("("));
+          Serial.print(opcData.signal_temp);
+          Serial.print(F("),"));
         delay(10);
-        Serial.print("Byte RH: " + String(opcData.rawComms[43]) + String(opcData.rawComms[42]) + ",");
-        Serial.print("Percent RH: " + String(opcData.RH) + "(" + String(opcData.signal_relhum) + "),");
+          Serial.print(F("Byte RH: "));
+          Serial.print(opcData.rawComms[43]);
+          Serial.print(opcData.rawComms[42]);
+          Serial.print(F(","));
+          Serial.print(F("Percent RH: "));
+          Serial.print(opcData.RH);
+          Serial.print(F("("));
+          Serial.print(opcData.signal_relhum);
+          Serial.print(F("),"));
         delay(10);
-        Serial.print("\n  ");
-        Serial.print("Sample Flow Rate: " + String(opcData.sampleflowrate) + ",");
+          Serial.print(F("\n"));
+          Serial.print(F("Sample Flow Rate: "));
+          Serial.print(opcData.sampleflowrate);
+          Serial.print(F(","));
         delay(10);
-        Serial.print("Sample Period: " + String(opcData.samplingperiod) + ",");
+          Serial.print(F("Sample Period: "));
+          Serial.print(opcData.samplingperiod);
+          Serial.print(F(",")); 
         delay(10);
-        Serial.print("\n  ");
-        Serial.print("Reject Glitch: " + String(opcData.reject[0]) + ",");
+          Serial.print(F("\n"));
+          Serial.print(F("Reject Glitch: "));
+          Serial.print(opcData.reject[0]);
+          Serial.print(F(","));
         delay(10);
-        Serial.print("Reject Long: " + String(opcData.reject[1]) + ",");
+          Serial.print(F("Reject Long: "));
+          Serial.print(opcData.reject[1]);
+          Serial.print(F(","));
         delay(10);
-        Serial.print("\n  ");
-        Serial.print("PM_A (PM1.0): " +  String(opcData.PM_ENV[0]) + ",");
+          Serial.print(F("\n"));
+          Serial.print(F("PM_A (PM1.0): "));
+          Serial.print(opcData.PM_ENV[0]);
+          Serial.print(F(","));
         delay(10);
-        Serial.print("PM_B (PM2.5): " + String(opcData.PM_ENV[1]) + ",");
+          Serial.print(F("\n"));
+          Serial.print(F("PM_B (PM2.5): "));
+          Serial.print(opcData.PM_ENV[1]);
+          Serial.print(F(","));
         delay(10);
-        Serial.print("PM_C (PM10.0): " + String(opcData.PM_ENV[2]) + ",");
+          Serial.print(F("\n"));
+          Serial.print(F("PM_C (PM10.0): "));
+          Serial.print(opcData.PM_ENV[2]);
+          Serial.print(F(","));
         delay(10);
-        Serial.print("\n  ");
-        Serial.print("CS: " + String(opcData.checksum) + ",");
-        Serial.println("VC: " + String(opcData.verifycheck) + ",");
+          Serial.print(F("\n"));
+          Serial.print(F("CS: "));
+          Serial.print(opcData.checksum);
+          Serial.print(F(","));
+          Serial.print(F("VC: "));
+          Serial.print(opcData.verifycheck);
+          Serial.print(F(","));
       #endif
     }
-    Serial.print("\n");
+    Serial.print(F("\n"));
   #endif  //SERIAL_LOG_ENABLED
 
   #if OPC_ENABLED
     digitalWrite(OPC_CSPIN, LOW);
     if(!opc.begin())  {
       digitalWrite(RED_LED, LOW);
-      Serial.println("Cannot find OPC");
+      Serial.println(F("Cannot find OPC"));
       opc.begin();
     }
     else
@@ -214,7 +254,7 @@ void loop()
       digitalWrite(EXT_GREEN_LED, LOW);
       digitalWrite(EXT_RED_LED, HIGH);
       #if SERIAL_LOG_ENABLED
-        Serial.println("Issues opening SD in loop");
+        Serial.println(F("Issues opening SD in loop"));
       #endif
       sd.begin(SD_CSPIN);
     }
@@ -229,63 +269,77 @@ void loop()
         Y = now.year();
         M = now.month();
         D = now.day();
-      sprintf(fileName, "%s_%04u_%02u_%02u.CSV", "M09", Y, M, D);    //char array for fileName
+      sprintf(fileName, "%s_%04u_%02u_%02u.CSV", "M11", Y, M, D);    //char array for fileName
       #endif
       delay(100);   
       file.open(fileName, O_CREAT | O_APPEND | O_WRITE);  //open with create, append, write permissions
       #if RTC_ENABLED
         rtc_date_time = rtc.now();
-        file.print("\r\n");
+        file.print(F("\r\n"));
         file.print(rtc_date_time.timestamp());
-        file.print(",");
+        file.print(F(","));
       #else
-        file.print(",");
+        file.print(F(","));
       #endif
 
       #if OPC_ENABLED
       // Bins 0 - 15 
         for(int i = 0; i < 16; i++){
-          file.print(String(opcData.bin[i]) + ",");
+          file.print(opcData.bin[i]);
+          file.print(F(","));
           delay(10);
         }
       // PM in ug/m^3 
-        file.print(String(opcData.PM_ENV[0]) + ",");
+        file.print(opcData.PM_ENV[0]);    
+        file.print(F(","));
         delay(10);
-        file.print(String(opcData.PM_ENV[1]) + ",");
+        file.print(opcData.PM_ENV[1]);
+        file.print(F(","));
         delay(10);
-        file.print(String(opcData.PM_ENV[2]) + ",");
+        file.print(opcData.PM_ENV[2]);
+        file.print(F(",")); 
         delay(10);
       // sampling information 
-        file.print(String(opcData.sampleflowrate) + ",");
+        file.print(opcData.sampleflowrate);
+        file.print(F(","));
         delay(10);
-        file.print(String(opcData.samplingperiod) + ",");
+        file.print(opcData.samplingperiod);
+        file.print(F(","));
         delay(10);
       // T & RH as C & %
-        file.print(String(opcData.T_C) + ",");
+        file.print(opcData.T_C);
+        file.print(F(",")); 
         delay(10);
-        file.print(String(opcData.RH) + ",");
+        file.print(opcData.RH);
+        file.print(F(","));
         delay(10);
       // T & RH signal only 
-        file.print(String(opcData.signal_temp) + ",");
+        file.print(opcData.signal_temp);
+        file.print(F(","));
         delay(10);
-        file.print(String(opcData.signal_relhum) + ",");
+        file.print(opcData.signal_relhum);
+        file.print(F(","));
         delay(10);
       // MToF in 1/3 microseconds 
         for(int j = 0; j < 4; j++){
-          file.print(String(opcData.MToF[j]) + ",");
+          file.print(opcData.MToF[j]);
+          file.print(F(","));
           delay(10);
         }
       // glitch & checksum values
-        file.print(String(opcData.reject[0]) + ",");
+        file.print(opcData.reject[0]);
+        file.print(F(",")); 
         delay(10);
-        file.print(String(opcData.reject[1]) + ",");
+        file.print(opcData.reject[1]);
+        file.print(F(",")); 
         delay(10);
-        file.print(String(opcData.checksum) + ",");
+        file.print(opcData.checksum);
+        file.print(F(",")); 
         delay(10);
-        file.print(String(opcData.verifycheck));
+        file.print(opcData.verifycheck);
         delay(10);
       #else //OPC_ENABLED
-        file.print(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
+        file.print(F(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"));
         delay(10);
       #endif //OPC_ENABLED
       file.sync();

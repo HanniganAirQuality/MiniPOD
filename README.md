@@ -10,6 +10,7 @@ Thanks to Izzy for this suggestion! Here we will be tracking each version of the
 | V3.2.0        | Initial Fix	 | Percy         | May 7, 2025   | File naming updated, changed clock adjust convention	|
 | V3.2.1        | Lot of Memory  | Percy         | May 8, 2025   | Fixes 3.2.0 issue creating files (probID "forgor")	|
 | V3.3.1        | USE THIS ONE | Percy         | Dec 9, 2025   | Optimizes memory by changing .print files	|
+| V3.4.0        | Crosstalk!! | Percy & Julia | Jan 15, 2025   | Enables crosstalk with XPOD for B404x transmission	|
 
 ## Memory Change Notes
 ### V3.2.1

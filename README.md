@@ -11,7 +11,7 @@ Thanks to Izzy for this suggestion! Here we will be tracking each version of the
 | V3.2.1        | Lot of Memory  | Percy         | May 8, 2025   | Fixes 3.2.0 issue creating files (probID "forgor")	|
 | V3.3.1        | USE THIS ONE | Percy         | Dec 9, 2025   | Optimizes memory by changing .print files	|
 | V3.4.0        | Crosstalk!! | Percy & Julia | Jan 15, 2025   | Enables crosstalk with XPOD for B404x transmission	|
-
+| V3.4.1        | Crosstalk Validation  | Percy & Julia | Jan 16, 2026   | Added character 'A' as packet start to string |
 ## Memory Change Notes
 ### V3.2.1
 Sketch uses 24686 bytes **(76%)** of program storage space. Maximum is 32256 bytes. 
@@ -22,3 +22,7 @@ Global variables use 1302 bytes **(63%)** of dynamic memory, leaving 746 bytes f
 ### V3.4.0
 Sketch uses 25470 bytes **(78%)** of program storage space. Maximum is 32256 bytes.
 Global variables use 1488 bytes **(72%)** of dynamic memory, leaving 560 bytes for local variables. Maximum is 2048 bytes.
+### V3.4.1
+Sketch uses 25504 bytes **(79%)** of program storage space. Maximum is 32256 bytes.
+Global variables use 1490 bytes **(72%)** of dynamic memory, leaving 558 bytes for local variables. Maximum is 2048 bytes.
+

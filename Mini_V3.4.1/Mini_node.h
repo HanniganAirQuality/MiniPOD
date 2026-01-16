@@ -20,6 +20,7 @@
 #define OPC_ENABLED           1
 
 #define CROSSTALK_ON          1
+#define DEBUG_CROSSTALK       0
 
 // OPC chip select
 #define OPC_CSPIN             9

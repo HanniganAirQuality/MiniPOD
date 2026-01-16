@@ -383,20 +383,20 @@ void loop() {
         megaRequestToUno.trim();
 
         if (megaRequestToUno == "Mega requesting data from Uno") {
-          Serial.print(F("Mega Message:"));
-          Serial.print(megaRequestToUno);
+          #if DEBUG_CROSSTALK
+            Serial.print(F("Mega Message:"));
+            Serial.print(megaRequestToUno);
+          #endif
           char unoResponse[128];
           snprintf(unoResponse, sizeof(unoResponse), "A%s,%s,%s\n",
                   SCALED_PM1, SCALED_PM25, SCALED_PM10);  // Remove JSON formatting & move to \n
-          // unoSerial.println(unoResponse);
           delay(100);
-          // Serial1.print(F("A")); //Hexadecimal indicator
           Serial1.print(unoResponse);
           Serial1.flush();
-          // delay(100);
-          // hasReceivedRequest = true;
-          Serial.print(F("\n"));
-          Serial.print(unoResponse);
+          #if DEBUG_CROSSTALK
+            Serial.print(F("\n"));
+            Serial.print(unoResponse);
+          #endif //DEBUG_CROSSTALK
         }
       }
       updatedData = false;

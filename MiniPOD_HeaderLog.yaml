@@ -1,0 +1,1100 @@
+# ==============================================================================
+# XPOD Header Log
+# ==============================================================================
+# description: This document logs header changes across versions for certain monitors
+# author: Percy Smith
+# date: May 13, 2026
+# ==============================================================================
+# STRUCTURE NOTES:
+#   Each version entry contains:
+#     - date:      when this version was introduced
+#     - changelog: what changed from the previous version
+#     - filetype:  SD file type, .TXT or .CSV
+#     - SD:        column definitions for SD-logged columns (write order preserved)
+#     - Cell:      column definitions for cellular-published columns (write order preserved)
+#
+#   Each header has:
+#     - unit:        (required) physical or encoded unit of the value
+#     - dtype:       (required) C/embedded data type as logged by firmware
+#     - format:      (optional) format string, used where encoding is non-obvious
+#     - sensor:      (optional) sensor IC that produced the reading
+#     - adc:         (optional) ADC used for digitization, if applicable
+#     - adc_mode:    (optional) single-ended or differential with channel notation
+#     - description: (optional) plain-language notes for analysts and developers
+#
+#   Naming convention:
+#     - Full words preferred over abbreviations (Temperature not T, Pressure not P)
+#     - Sensor-prefixed where multiple sensors report the same measurand (MiCS2611_Ozone, MQ131_Ozone)
+#     - Casing: PascalCase for compound names, sensor model names preserved as-is
+# ==============================================================================
+MiniPOD_V3_1_0:
+  date: 2024-06-19
+  changelog:  First version available on Github
+  SD_fileinfo:  
+    FileName: MiniID
+    FileType: .CSV
+  SD:
+    DateTime:
+      unit: timestamp
+      dtype: string
+      format: "YYYY-MM-ddThh:mm:ss"
+      sensor: PCF8523
+    OPC_Bin0: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.3-0.55um over sampling period 
+    OPC_Bin1: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.55-0.9um over sampling period 
+    OPC_Bin2: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.9-1.3um over sampling period 
+    OPC_Bin3: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 1.3-1.8um over sampling period 
+    OPC_Bin4: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 1.8-2.4um over sampling period 
+    OPC_Bin5: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 2.4-3.0um over sampling period 
+    OPC_Bin6: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 3.0-4.0um over sampling period 
+    OPC_Bin7: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 4.0-5.0um over sampling period 
+    OPC_Bin8: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 5.0-6.0um over sampling period 
+    OPC_Bin9: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 6.0-7.0um over sampling period 
+    OPC_Bin10: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 7.0-8.0um over sampling period 
+    OPC_Bin11: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 8.0-9.0um over sampling period 
+    OPC_Bin12: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 9.0-10.0um over sampling period 
+    OPC_Bin13: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 10.0-11.0um over sampling period 
+    OPC_Bin14: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 11.0-12.0um over sampling period 
+    OPC_Bin15: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 12.0-12.4um over sampling period 
+    OPC_PM10:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 1.0 concentration
+    OPC_PM25:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 2.5 concentration
+    OPC_PM100:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 10.0 concentration
+    OPC_SampleFlowRate:
+      unit: mL/s
+      dtype: float
+      sensor: OPC-R2
+      description: Flow rate during sampling of the OPC-R2 
+    OPC_SamplePeriod:
+      unit: seconds
+      dtype: float
+      sensor: OPC-R2
+      description: Sample period of the OPC-R2 
+    OPC_Temperature: 
+      unit: Celsius
+      dtype: float 
+      sensor: OPC-R2
+      description: Processed output of OPC-R2's onboard temperature sensor (= -45 + 175 * OPC_TempSignal / 65535)
+    OPC_Relative_Humidity: 
+      unit: "%RH"
+      dtype: float
+      sensor: OPC-R2
+      description: Processed output of OPC-R2's onboard humidity sensor (= 100 * OPC_RelHumSignal / 65535)
+    OPC_TempSignal: 
+      unit: bits
+      dtype: uint16_t 
+      sensor: OPC-R2
+      description: Raw output of OPC-R2's onboard temperature sensor 
+    OPC_RelHumSignal: 
+      unit: bits
+      dtype: uint16_t 
+      sensor: OPC-R2
+      description: Raw output of OPC-R2's onboard humidity sensor
+    OPC_MToFBin1: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin1 (0.55-0.9um) over sampling period 
+    OPC_MToFBin3: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin3 (1.3-1.8um) over sampling period 
+    OPC_MToFBin5: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin5 (2.4-3.0um) over sampling period 
+    OPC_MToFBin7: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin7 (4.0-5.0um) over sampling period 
+    OPC_RejectGlitch:
+      unit: count 
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: From the manual, and I quote, noise and invalid particle error indicator (not differentiated from OPC_RejectLong)
+    OPC_RejectLong:
+      unit: count 
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: From the manual, and I quote, noise and invalid particle error indicator (not differentiated from OPC_RejectGlitch)
+    OPC_Checksum:
+      unit: count 
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Checksum, transmitted
+    OPC_Verify:
+      unit: count 
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Summed checksum calculation with OPC_Checksum
+MiniPOD_V3_1_2:
+  date: 2024-06-20
+  changelog:  This one actually functions, but IDK what is wrong with 3.1.0
+    No change to header since 3.1.0
+  SD_fileinfo:  
+    FileName: MiniID
+    FileType: .CSV
+  SD:
+    DateTime:
+      unit: timestamp
+      dtype: string
+      format: "YYYY-MM-ddThh:mm:ss"
+      sensor: PCF8523
+    OPC_Bin0: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.3-0.55um over sampling period 
+    OPC_Bin1: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.55-0.9um over sampling period 
+    OPC_Bin2: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.9-1.3um over sampling period 
+    OPC_Bin3: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 1.3-1.8um over sampling period 
+    OPC_Bin4: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 1.8-2.4um over sampling period 
+    OPC_Bin5: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 2.4-3.0um over sampling period 
+    OPC_Bin6: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 3.0-4.0um over sampling period 
+    OPC_Bin7: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 4.0-5.0um over sampling period 
+    OPC_Bin8: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 5.0-6.0um over sampling period 
+    OPC_Bin9: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 6.0-7.0um over sampling period 
+    OPC_Bin10: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 7.0-8.0um over sampling period 
+    OPC_Bin11: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 8.0-9.0um over sampling period 
+    OPC_Bin12: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 9.0-10.0um over sampling period 
+    OPC_Bin13: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 10.0-11.0um over sampling period 
+    OPC_Bin14: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 11.0-12.0um over sampling period 
+    OPC_Bin15: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 12.0-12.4um over sampling period 
+    OPC_PM10:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 1.0 concentration
+    OPC_PM25:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 2.5 concentration
+    OPC_PM100:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 10.0 concentration
+    OPC_SampleFlowRate:
+      unit: mL/s
+      dtype: float
+      sensor: OPC-R2
+      description: Flow rate during sampling of the OPC-R2 
+    OPC_SamplePeriod:
+      unit: seconds
+      dtype: float
+      sensor: OPC-R2
+      description: Sample period of the OPC-R2 
+    OPC_Temperature: 
+      unit: Celsius
+      dtype: float 
+      sensor: OPC-R2
+      description: Processed output of OPC-R2's onboard temperature sensor (= -45 + 175 * OPC_TempSignal / 65535)
+    OPC_Relative_Humidity: 
+      unit: "%RH"
+      dtype: float
+      sensor: OPC-R2
+      description: Processed output of OPC-R2's onboard humidity sensor (= 100 * OPC_RelHumSignal / 65535)
+    OPC_TempSignal: 
+      unit: bits
+      dtype: uint16_t 
+      sensor: OPC-R2
+      description: Raw output of OPC-R2's onboard temperature sensor 
+    OPC_RelHumSignal: 
+      unit: bits
+      dtype: uint16_t 
+      sensor: OPC-R2
+      description: Raw output of OPC-R2's onboard humidity sensor
+    OPC_MToFBin1: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin1 (0.55-0.9um) over sampling period 
+    OPC_MToFBin3: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin3 (1.3-1.8um) over sampling period 
+    OPC_MToFBin5: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin5 (2.4-3.0um) over sampling period 
+    OPC_MToFBin7: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin7 (4.0-5.0um) over sampling period 
+    OPC_RejectGlitch:
+      unit: count 
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: From the manual, and I quote, noise and invalid particle error indicator (not differentiated from OPC_RejectLong)
+    OPC_RejectLong:
+      unit: count 
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: From the manual, and I quote, noise and invalid particle error indicator (not differentiated from OPC_RejectGlitch)
+    OPC_Checksum:
+      unit: count 
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Checksum, transmitted
+    OPC_Verify:
+      unit: count 
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Summed checksum calculation with OPC_Checksum      
+MiniPOD_V3_2_0:
+  date: 2025-05-07
+  changelog:  File naming convention changes here, also separated clock convention for PCF
+    No change to header since 3.1.0
+  SD_fileinfo:  
+    FileName: MID_YYYY_MM_dd
+    FileType: .CSV
+  SD:
+    DateTime:
+      unit: timestamp
+      dtype: string
+      format: "YYYY-MM-ddThh:mm:ss"
+      sensor: PCF8523
+    OPC_Bin0: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.3-0.55um over sampling period 
+    OPC_Bin1: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.55-0.9um over sampling period 
+    OPC_Bin2: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.9-1.3um over sampling period 
+    OPC_Bin3: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 1.3-1.8um over sampling period 
+    OPC_Bin4: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 1.8-2.4um over sampling period 
+    OPC_Bin5: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 2.4-3.0um over sampling period 
+    OPC_Bin6: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 3.0-4.0um over sampling period 
+    OPC_Bin7: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 4.0-5.0um over sampling period 
+    OPC_Bin8: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 5.0-6.0um over sampling period 
+    OPC_Bin9: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 6.0-7.0um over sampling period 
+    OPC_Bin10: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 7.0-8.0um over sampling period 
+    OPC_Bin11: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 8.0-9.0um over sampling period 
+    OPC_Bin12: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 9.0-10.0um over sampling period 
+    OPC_Bin13: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 10.0-11.0um over sampling period 
+    OPC_Bin14: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 11.0-12.0um over sampling period 
+    OPC_Bin15: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 12.0-12.4um over sampling period 
+    OPC_PM10:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 1.0 concentration
+    OPC_PM25:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 2.5 concentration
+    OPC_PM100:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 10.0 concentration
+    OPC_SampleFlowRate:
+      unit: mL/s
+      dtype: float
+      sensor: OPC-R2
+      description: Flow rate during sampling of the OPC-R2 
+    OPC_SamplePeriod:
+      unit: seconds
+      dtype: float
+      sensor: OPC-R2
+      description: Sample period of the OPC-R2 
+    OPC_Temperature: 
+      unit: Celsius
+      dtype: float 
+      sensor: OPC-R2
+      description: Processed output of OPC-R2's onboard temperature sensor (= -45 + 175 * OPC_TempSignal / 65535)
+    OPC_Relative_Humidity: 
+      unit: "%RH"
+      dtype: float
+      sensor: OPC-R2
+      description: Processed output of OPC-R2's onboard humidity sensor (= 100 * OPC_RelHumSignal / 65535)
+    OPC_TempSignal: 
+      unit: bits
+      dtype: uint16_t 
+      sensor: OPC-R2
+      description: Raw output of OPC-R2's onboard temperature sensor 
+    OPC_RelHumSignal: 
+      unit: bits
+      dtype: uint16_t 
+      sensor: OPC-R2
+      description: Raw output of OPC-R2's onboard humidity sensor
+    OPC_MToFBin1: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin1 (0.55-0.9um) over sampling period 
+    OPC_MToFBin3: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin3 (1.3-1.8um) over sampling period 
+    OPC_MToFBin5: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin5 (2.4-3.0um) over sampling period 
+    OPC_MToFBin7: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin7 (4.0-5.0um) over sampling period 
+    OPC_RejectGlitch:
+      unit: count 
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: From the manual, and I quote, noise and invalid particle error indicator (not differentiated from OPC_RejectLong)
+    OPC_RejectLong:
+      unit: count 
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: From the manual, and I quote, noise and invalid particle error indicator (not differentiated from OPC_RejectGlitch)
+    OPC_Checksum:
+      unit: count 
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Checksum, transmitted
+    OPC_Verify:
+      unit: count 
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Summed checksum calculation with OPC_Checksum
+MiniPOD_V3_2_1:
+  date: 2025-05-08
+  changelog:  Fixes issues with probID "forgor" (moves MID into ino)
+    No change to header since 3.1.0
+  SD_fileinfo:  
+    FileName: MID_YYYY_MM_dd
+    FileType: .CSV
+  SD:
+    DateTime:
+      unit: timestamp
+      dtype: string
+      format: "YYYY-MM-ddThh:mm:ss"
+      sensor: PCF8523
+    OPC_Bin0: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.3-0.55um over sampling period 
+    OPC_Bin1: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.55-0.9um over sampling period 
+    OPC_Bin2: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.9-1.3um over sampling period 
+    OPC_Bin3: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 1.3-1.8um over sampling period 
+    OPC_Bin4: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 1.8-2.4um over sampling period 
+    OPC_Bin5: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 2.4-3.0um over sampling period 
+    OPC_Bin6: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 3.0-4.0um over sampling period 
+    OPC_Bin7: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 4.0-5.0um over sampling period 
+    OPC_Bin8: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 5.0-6.0um over sampling period 
+    OPC_Bin9: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 6.0-7.0um over sampling period 
+    OPC_Bin10: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 7.0-8.0um over sampling period 
+    OPC_Bin11: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 8.0-9.0um over sampling period 
+    OPC_Bin12: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 9.0-10.0um over sampling period 
+    OPC_Bin13: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 10.0-11.0um over sampling period 
+    OPC_Bin14: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 11.0-12.0um over sampling period 
+    OPC_Bin15: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 12.0-12.4um over sampling period 
+    OPC_PM10:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 1.0 concentration
+    OPC_PM25:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 2.5 concentration
+    OPC_PM100:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 10.0 concentration
+    OPC_SampleFlowRate:
+      unit: mL/s
+      dtype: float
+      sensor: OPC-R2
+      description: Flow rate during sampling of the OPC-R2 
+    OPC_SamplePeriod:
+      unit: seconds
+      dtype: float
+      sensor: OPC-R2
+      description: Sample period of the OPC-R2 
+    OPC_Temperature: 
+      unit: Celsius
+      dtype: float 
+      sensor: OPC-R2
+      description: Processed output of OPC-R2's onboard temperature sensor (= -45 + 175 * OPC_TempSignal / 65535)
+    OPC_Relative_Humidity: 
+      unit: "%RH"
+      dtype: float
+      sensor: OPC-R2
+      description: Processed output of OPC-R2's onboard humidity sensor (= 100 * OPC_RelHumSignal / 65535)
+    OPC_TempSignal: 
+      unit: bits
+      dtype: uint16_t 
+      sensor: OPC-R2
+      description: Raw output of OPC-R2's onboard temperature sensor 
+    OPC_RelHumSignal: 
+      unit: bits
+      dtype: uint16_t 
+      sensor: OPC-R2
+      description: Raw output of OPC-R2's onboard humidity sensor
+    OPC_MToFBin1: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin1 (0.55-0.9um) over sampling period 
+    OPC_MToFBin3: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin3 (1.3-1.8um) over sampling period 
+    OPC_MToFBin5: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin5 (2.4-3.0um) over sampling period 
+    OPC_MToFBin7: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin7 (4.0-5.0um) over sampling period 
+    OPC_RejectGlitch:
+      unit: count 
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: From the manual, and I quote, noise and invalid particle error indicator (not differentiated from OPC_RejectLong)
+    OPC_RejectLong:
+      unit: count 
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: From the manual, and I quote, noise and invalid particle error indicator (not differentiated from OPC_RejectGlitch)
+    OPC_Checksum:
+      unit: count 
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Checksum, transmitted
+    OPC_Verify:
+      unit: count 
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Summed checksum calculation with OPC_Checksum
+MiniPOD_V3_3_1:
+  date: 2025-12-09
+  changelog: ACTUALLY Fixes issues with probID "forgor" (moves MID into ino) 
+    This is the main script in use
+    No change to header since 3.1.0
+  SD_fileinfo:  
+    FileName: MID_YYYY_MM_dd
+    FileType: .CSV
+  SD:
+    DateTime:
+      unit: timestamp
+      dtype: string
+      format: "YYYY-MM-ddThh:mm:ss"
+      sensor: PCF8523
+    OPC_Bin0: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.3-0.55um over sampling period 
+    OPC_Bin1: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.55-0.9um over sampling period 
+    OPC_Bin2: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.9-1.3um over sampling period 
+    OPC_Bin3: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 1.3-1.8um over sampling period 
+    OPC_Bin4: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 1.8-2.4um over sampling period 
+    OPC_Bin5: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 2.4-3.0um over sampling period 
+    OPC_Bin6: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 3.0-4.0um over sampling period 
+    OPC_Bin7: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 4.0-5.0um over sampling period 
+    OPC_Bin8: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 5.0-6.0um over sampling period 
+    OPC_Bin9: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 6.0-7.0um over sampling period 
+    OPC_Bin10: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 7.0-8.0um over sampling period 
+    OPC_Bin11: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 8.0-9.0um over sampling period 
+    OPC_Bin12: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 9.0-10.0um over sampling period 
+    OPC_Bin13: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 10.0-11.0um over sampling period 
+    OPC_Bin14: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 11.0-12.0um over sampling period 
+    OPC_Bin15: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 12.0-12.4um over sampling period 
+    OPC_PM10:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 1.0 concentration
+    OPC_PM25:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 2.5 concentration
+    OPC_PM100:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 10.0 concentration
+    OPC_SampleFlowRate:
+      unit: mL/s
+      dtype: float
+      sensor: OPC-R2
+      description: Flow rate during sampling of the OPC-R2 
+    OPC_SamplePeriod:
+      unit: seconds
+      dtype: float
+      sensor: OPC-R2
+      description: Sample period of the OPC-R2 
+    OPC_Temperature: 
+      unit: Celsius
+      dtype: float 
+      sensor: OPC-R2
+      description: Processed output of OPC-R2's onboard temperature sensor (= -45 + 175 * OPC_TempSignal / 65535)
+    OPC_Relative_Humidity: 
+      unit: "%RH"
+      dtype: float
+      sensor: OPC-R2
+      description: Processed output of OPC-R2's onboard humidity sensor (= 100 * OPC_RelHumSignal / 65535)
+    OPC_TempSignal: 
+      unit: bits
+      dtype: uint16_t 
+      sensor: OPC-R2
+      description: Raw output of OPC-R2's onboard temperature sensor 
+    OPC_RelHumSignal: 
+      unit: bits
+      dtype: uint16_t 
+      sensor: OPC-R2
+      description: Raw output of OPC-R2's onboard humidity sensor
+    OPC_MToFBin1: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin1 (0.55-0.9um) over sampling period 
+    OPC_MToFBin3: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin3 (1.3-1.8um) over sampling period 
+    OPC_MToFBin5: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin5 (2.4-3.0um) over sampling period 
+    OPC_MToFBin7: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin7 (4.0-5.0um) over sampling period 
+    OPC_RejectGlitch:
+      unit: count 
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: From the manual, and I quote, noise and invalid particle error indicator (not differentiated from OPC_RejectLong)
+    OPC_RejectLong:
+      unit: count 
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: From the manual, and I quote, noise and invalid particle error indicator (not differentiated from OPC_RejectGlitch)
+    OPC_Checksum:
+      unit: count 
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Checksum, transmitted
+    OPC_Verify:
+      unit: count 
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Summed checksum calculation with OPC_Checksum
+MiniPOD_V3_4_0:
+  date: 2026-01-15
+  changelog: ACTUALLY Fixes issues with probID "forgor" (moves MID into ino) 
+    This is the main script in use
+    No change to header since 3.1.0
+  SD_fileinfo:  
+    FileName: MID_YYYY_MM_dd
+    FileType: .CSV
+  SD:
+    DateTime:
+      unit: timestamp
+      dtype: string
+      format: "YYYY-MM-ddThh:mm:ss"
+      sensor: PCF8523
+    OPC_Bin0: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.3-0.55um over sampling period 
+    OPC_Bin1: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.55-0.9um over sampling period 
+    OPC_Bin2: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.9-1.3um over sampling period 
+    OPC_Bin3: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 1.3-1.8um over sampling period 
+    OPC_Bin4: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 1.8-2.4um over sampling period 
+    OPC_Bin5: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 2.4-3.0um over sampling period 
+    OPC_Bin6: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 3.0-4.0um over sampling period 
+    OPC_Bin7: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 4.0-5.0um over sampling period 
+    OPC_Bin8: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 5.0-6.0um over sampling period 
+    OPC_Bin9: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 6.0-7.0um over sampling period 
+    OPC_Bin10: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 7.0-8.0um over sampling period 
+    OPC_Bin11: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 8.0-9.0um over sampling period 
+    OPC_Bin12: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 9.0-10.0um over sampling period 
+    OPC_Bin13: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 10.0-11.0um over sampling period 
+    OPC_Bin14: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 11.0-12.0um over sampling period 
+    OPC_Bin15: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 12.0-12.4um over sampling period 
+    OPC_PM10:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 1.0 concentration
+    OPC_PM25:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 2.5 concentration
+    OPC_PM100:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 10.0 concentration
+    OPC_SampleFlowRate:
+      unit: mL/s
+      dtype: float
+      sensor: OPC-R2
+      description: Flow rate during sampling of the OPC-R2 
+    OPC_SamplePeriod:
+      unit: seconds
+      dtype: float
+      sensor: OPC-R2
+      description: Sample period of the OPC-R2 
+    OPC_Temperature: 
+      unit: Celsius
+      dtype: float 
+      sensor: OPC-R2
+      description: Processed output of OPC-R2's onboard temperature sensor (= -45 + 175 * OPC_TempSignal / 65535)
+    OPC_Relative_Humidity: 
+      unit: "%RH"
+      dtype: float
+      sensor: OPC-R2
+      description: Processed output of OPC-R2's onboard humidity sensor (= 100 * OPC_RelHumSignal / 65535)
+    OPC_TempSignal: 
+      unit: bits
+      dtype: uint16_t 
+      sensor: OPC-R2
+      description: Raw output of OPC-R2's onboard temperature sensor 
+    OPC_RelHumSignal: 
+      unit: bits
+      dtype: uint16_t 
+      sensor: OPC-R2
+      description: Raw output of OPC-R2's onboard humidity sensor
+    OPC_MToFBin1: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin1 (0.55-0.9um) over sampling period 
+    OPC_MToFBin3: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin3 (1.3-1.8um) over sampling period 
+    OPC_MToFBin5: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin5 (2.4-3.0um) over sampling period 
+    OPC_MToFBin7: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin7 (4.0-5.0um) over sampling period 
+    OPC_RejectGlitch:
+      unit: count 
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: From the manual, and I quote, noise and invalid particle error indicator (not differentiated from OPC_RejectLong)
+    OPC_RejectLong:
+      unit: count 
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: From the manual, and I quote, noise and invalid particle error indicator (not differentiated from OPC_RejectGlitch)
+    OPC_Checksum:
+      unit: count 
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Checksum, transmitted
+    OPC_Verify:
+      unit: count 
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Summed checksum calculation with OPC_Checksum
+
+## STILL NEEDS CROSSTALK UPDATE FOR 3.4.0 & 3.4.1

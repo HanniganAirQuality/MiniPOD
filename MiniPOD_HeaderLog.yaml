@@ -1,9 +1,9 @@
 # ==============================================================================
-# XPOD Header Log
+# MiniPOD Header Log
 # ==============================================================================
 # description: This document logs header changes across versions for certain monitors
 # author: Percy Smith
-# date: May 13, 2026
+# date: May 14, 2026
 # ==============================================================================
 # STRUCTURE NOTES:
 #   Each version entry contains:
@@ -919,9 +919,8 @@ MiniPOD_V3_3_1:
       description: Summed checksum calculation with OPC_Checksum
 MiniPOD_V3_4_0:
   date: 2026-01-15
-  changelog: ACTUALLY Fixes issues with probID "forgor" (moves MID into ino) 
-    This is the main script in use
-    No change to header since 3.1.0
+  changelog: Enables transmission to XPOD then to Cellular 
+    Addition of Relay_toXPOD_Crosstalk!
   SD_fileinfo:  
     FileName: MID_YYYY_MM_dd
     FileType: .CSV
@@ -1096,5 +1095,217 @@ MiniPOD_V3_4_0:
       dtype: uint16_t
       sensor: OPC-R2
       description: Summed checksum calculation with OPC_Checksum
-
-## STILL NEEDS CROSSTALK UPDATE FOR 3.4.0 & 3.4.1
+  Relay_toXPOD_Crosstalk:
+    OPC_PM10:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 1.0 concentration
+    OPC_PM25:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 2.5 concentration
+    OPC_PM100:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 10.0 concentration
+MiniPOD_V3_4_1:
+  date: 2026-01-16
+  changelog: Adds 'A' as Starter_Packet to verify that the signal comes from a MiniPOD, not noise in cable 
+    No other changes to header other than added Starter_Packet variable under Relay_toXPOD_Crosstalk
+  SD_fileinfo:  
+    FileName: MID_YYYY_MM_dd
+    FileType: .CSV
+  SD:
+    DateTime:
+      unit: timestamp
+      dtype: string
+      format: "YYYY-MM-ddThh:mm:ss"
+      sensor: PCF8523
+    OPC_Bin0: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.3-0.55um over sampling period 
+    OPC_Bin1: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.55-0.9um over sampling period 
+    OPC_Bin2: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 0.9-1.3um over sampling period 
+    OPC_Bin3: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 1.3-1.8um over sampling period 
+    OPC_Bin4: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 1.8-2.4um over sampling period 
+    OPC_Bin5: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 2.4-3.0um over sampling period 
+    OPC_Bin6: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 3.0-4.0um over sampling period 
+    OPC_Bin7: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 4.0-5.0um over sampling period 
+    OPC_Bin8: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 5.0-6.0um over sampling period 
+    OPC_Bin9: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 6.0-7.0um over sampling period 
+    OPC_Bin10: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 7.0-8.0um over sampling period 
+    OPC_Bin11: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 8.0-9.0um over sampling period 
+    OPC_Bin12: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 9.0-10.0um over sampling period 
+    OPC_Bin13: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 10.0-11.0um over sampling period 
+    OPC_Bin14: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 11.0-12.0um over sampling period 
+    OPC_Bin15: 
+      unit: particles/second #ALLEGEDLY
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Particle count of particles sized as 12.0-12.4um over sampling period 
+    OPC_PM10:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 1.0 concentration
+    OPC_PM25:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 2.5 concentration
+    OPC_PM100:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 10.0 concentration
+    OPC_SampleFlowRate:
+      unit: mL/s
+      dtype: float
+      sensor: OPC-R2
+      description: Flow rate during sampling of the OPC-R2 
+    OPC_SamplePeriod:
+      unit: seconds
+      dtype: float
+      sensor: OPC-R2
+      description: Sample period of the OPC-R2 
+    OPC_Temperature: 
+      unit: Celsius
+      dtype: float 
+      sensor: OPC-R2
+      description: Processed output of OPC-R2's onboard temperature sensor (= -45 + 175 * OPC_TempSignal / 65535)
+    OPC_Relative_Humidity: 
+      unit: "%RH"
+      dtype: float
+      sensor: OPC-R2
+      description: Processed output of OPC-R2's onboard humidity sensor (= 100 * OPC_RelHumSignal / 65535)
+    OPC_TempSignal: 
+      unit: bits
+      dtype: uint16_t 
+      sensor: OPC-R2
+      description: Raw output of OPC-R2's onboard temperature sensor 
+    OPC_RelHumSignal: 
+      unit: bits
+      dtype: uint16_t 
+      sensor: OPC-R2
+      description: Raw output of OPC-R2's onboard humidity sensor
+    OPC_MToFBin1: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin1 (0.55-0.9um) over sampling period 
+    OPC_MToFBin3: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin3 (1.3-1.8um) over sampling period 
+    OPC_MToFBin5: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin5 (2.4-3.0um) over sampling period 
+    OPC_MToFBin7: 
+      unit: 1/3 us
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: Mean Time of Flight, average time to cross laser beam for particles sized in OPC_Bin7 (4.0-5.0um) over sampling period 
+    OPC_RejectGlitch:
+      unit: count 
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: From the manual, and I quote, noise and invalid particle error indicator (not differentiated from OPC_RejectLong)
+    OPC_RejectLong:
+      unit: count 
+      dtype: uint8_t
+      sensor: OPC-R2
+      description: From the manual, and I quote, noise and invalid particle error indicator (not differentiated from OPC_RejectGlitch)
+    OPC_Checksum:
+      unit: count 
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Checksum, transmitted
+    OPC_Verify:
+      unit: count 
+      dtype: uint16_t
+      sensor: OPC-R2
+      description: Summed checksum calculation with OPC_Checksum
+  Relay_toXPOD_Crosstalk:
+    Starter_Packet: 
+      unit: NA
+      dtype: char
+      description: Literally just the letter 'A' as a starter packet that verifies data comes from MiniPOD, not random noise
+    OPC_PM10:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 1.0 concentration
+    OPC_PM25:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 2.5 concentration
+    OPC_PM100:
+      unit: ug/m^3
+      dtype: float
+      sensor: OPC-R2
+      description: OPC-R2, PM 10.0 concentration
